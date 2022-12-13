@@ -1,0 +1,27 @@
+# Deployment will automatically include replica sets
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myflaskapp-dep
+  labels:
+    app: myflaskapp
+    env: dev
+spec:
+  selector:
+    matchLabels:
+      app: myflaskapp
+      env: dev
+  replicas: 2
+  template:
+    metadata:
+      name: myflaskapp-pod
+      labels:
+        app: myflaskapp
+        env: dev
+    spec:
+      containers:
+        - name: flaskapp
+          image: flaskapp
+          imagePullPolicy: IfNotPresent
+          ports:
+          - containerPort: 5000

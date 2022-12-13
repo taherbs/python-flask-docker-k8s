@@ -1,0 +1,18 @@
+# Allow the frontend pods to access the backend pods
+apiVersion: v1
+kind: Service
+metadata:
+  name: myflaskapp-serice
+  labels:
+    app: myflaskapp
+    env: dev
+spec:
+  selector:
+    app: myflaskapp
+    env: dev
+  type: NodePort # ClusterIP
+  ports:
+    - port: 5000
+      targetPort: 5000
+
+

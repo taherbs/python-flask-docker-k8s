@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myflaskapp-pod
+  labels:
+    app: myflaskapp
+    env: dev 
+spec:
+  containers:
+    - name: flaskapp
+      image: flaskapp
+      imagePullPolicy: IfNotPresent
+      ports:
+      - containerPort: 5000

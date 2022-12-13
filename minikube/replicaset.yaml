@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: myflaskapp-rc
+  labels:
+    app: myflaskapp
+    env: dev
+spec:
+  selector:
+    matchLabels:
+      app: myflaskapp
+      env: dev
+  replicas: 2
+  template:
+    metadata:
+      name: myflaskapp-pod
+      labels:
+        app: myflaskapp
+        env: dev
+    spec:
+      containers:
+        - name: flaskapp
+          image: flaskapp
